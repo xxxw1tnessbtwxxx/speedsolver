@@ -20,6 +20,11 @@ namespace SpeedSolverDatabase.Models.Configurations
                 .WithMany(c => c.OwnTeams)
                 .HasForeignKey(t => t.CreatorId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasMany(t => t.Objectives)
+                .WithOne(t => t.Team)
+                .HasForeignKey(t => t.ObjectiveId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

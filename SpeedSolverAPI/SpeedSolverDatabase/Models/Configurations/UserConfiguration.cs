@@ -10,8 +10,15 @@ namespace SpeedSolverDatabase.Models.Configurations
             builder.ToTable("users");
             
             builder.HasKey(u => u.UserId);
-
+            
+            // - CFG: Teams
             builder.HasMany(u => u.OwnTeams)
+                .WithOne(t => t.Creator)
+                .HasForeignKey(u => u.CreatorId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            // - CFG: Objectives
+            builder.HasMany(u => u.Objectives)
                 .WithOne(t => t.Creator)
                 .HasForeignKey(u => u.CreatorId)
                 .OnDelete(DeleteBehavior.Cascade);

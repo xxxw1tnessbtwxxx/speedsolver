@@ -10,6 +10,6 @@
         public DateTime CreationDate { get; set; }
 
         public virtual User Creator { get; set; }
-        public virtual List<TeamObjectives> Objectives { get; set; }
+        public virtual List<TeamObjective> Objectives { get; set; }
     }
 }

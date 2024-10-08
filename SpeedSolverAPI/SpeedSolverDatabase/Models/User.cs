@@ -18,5 +18,6 @@ namespace SpeedSolverDatabase.Models
         public string? Phone { get; set; }
 
         public virtual List<Team> OwnTeams { get; set; }
+        public virtual List<Objective> Objectives { get; set; }
     }
 }
