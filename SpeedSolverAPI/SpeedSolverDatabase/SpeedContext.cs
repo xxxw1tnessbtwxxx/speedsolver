@@ -18,6 +18,7 @@ namespace SpeedSolverDatabase
         public DbSet<Project> Projects { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Objective> Objectives { get; set; }
         
         public SpeedContext()
         {
@@ -39,10 +40,10 @@ namespace SpeedSolverDatabase
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
+            modelBuilder.ApplyConfiguration(new ObjectiveConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
