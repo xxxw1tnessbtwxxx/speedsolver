@@ -1,15 +1,11 @@
-﻿namespace SpeedSolverDatabase.Models
+namespace SpeedSolverDatabase.Models;
+
+public class Team
 {
-    public class Team
-    {
-        public int TeamId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        public int CreatorId { get; set; }
-        public DateTime CreationDate { get; set; }
-
-        public virtual User Creator { get; set; }
-        public virtual List<TeamObjective> Objectives { get; set; }
-    }
+    public int TeamId { get; set; }
+    public string TeamName { get; set; }
+    public string TeamDescription { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public int CreatorId { get; set; }
+    public User? Creator { get; set; }
 }

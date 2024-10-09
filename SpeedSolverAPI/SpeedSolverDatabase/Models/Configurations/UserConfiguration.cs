@@ -1,27 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace SpeedSolverDatabase.Models.Configurations
+namespace SpeedSolverDatabase.Models.Configurations;
+
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.ToTable("users");
-            
-            builder.HasKey(u => u.UserId);
-            
-            // - CFG: Teams
-            builder.HasMany(u => u.OwnTeams)
-                .WithOne(t => t.Creator)
-                .HasForeignKey(u => u.CreatorId)
-                .OnDelete(DeleteBehavior.Cascade);
-            
-            // - CFG: Objectives
-            builder.HasMany(u => u.Objectives)
-                .WithOne(t => t.Creator)
-                .HasForeignKey(u => u.CreatorId)
-                .OnDelete(DeleteBehavior.Cascade);
-        }
+        builder.ToTable("users");
+        builder.HasKey(u => u.UserId);
+
+        builder.Property(u => u.Login)
+            .IsRequired();
+        builder.Property(u => u.Password)
+            .IsRequired();
+
+        builder.Property(u => u.PhoneNumber)
+            .HasMaxLength(12);
+        
+        builder.HasMany(u => u.Teams)
+            .WithOne(t => t.Creator)
+            .HasForeignKey(t => t.CreatorId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

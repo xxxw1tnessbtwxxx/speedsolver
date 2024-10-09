@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SpeedSolverDatabase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using SpeedSolverDatabase.Models;
 using SpeedSolverDatabase.Models.Configurations;
 
 namespace SpeedSolverDatabase
@@ -13,11 +14,11 @@ namespace SpeedSolverDatabase
     {
 
         public bool IsConnected { get; set; } = false;
-
-        public DbSet<User> Users { get; set; }
+        
+        public DbSet<Project> Projects { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamObjective> TeamObjectives { get; set; }
-        public DbSet<Objective> Objectives { get; set; }
+        public DbSet<User> Users { get; set; }
+        
         public SpeedContext()
         {
             try
@@ -38,10 +39,10 @@ namespace SpeedSolverDatabase
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ObjectiveConfiguration());
+            
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
-            modelBuilder.ApplyConfiguration(new TeamObjectiveConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
