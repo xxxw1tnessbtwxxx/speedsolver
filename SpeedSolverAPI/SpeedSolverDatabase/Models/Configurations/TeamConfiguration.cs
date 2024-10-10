@@ -11,7 +11,12 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
 
         builder.HasKey(t => t.TeamId);
 
-        builder.Property(t => t.TeamName).IsRequired();
+        builder.Property(t => t.TeamName)
+            .IsRequired()
+            .HasMaxLength(30);
+
+        builder.Property(t => t.TeamDescription)
+            .HasMaxLength(100);
         
         builder.HasOne(t => t.Creator)
             .WithMany(c => c.Teams)
