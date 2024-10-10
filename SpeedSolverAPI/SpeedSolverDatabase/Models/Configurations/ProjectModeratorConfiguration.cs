@@ -13,5 +13,9 @@ public class ProjectModeratorConfiguration: IEntityTypeConfiguration<ProjectMode
             .WithMany(u => u.ProjectModerated)
             .HasForeignKey(p => p.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(p => p.SettedByUser)
+            .WithMany()
+            .HasForeignKey(f => f.SettedByUserId);
     }
 }

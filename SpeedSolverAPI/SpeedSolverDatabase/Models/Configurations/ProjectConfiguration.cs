@@ -16,5 +16,7 @@ public class ProjectConfiguration: IEntityTypeConfiguration<Project>
         
         builder.Property(p => p.ProjectDescription)
             .HasMaxLength(300);
+        
+        
     }
 }
