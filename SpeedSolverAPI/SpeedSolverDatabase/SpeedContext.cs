@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Logging;
 using SpeedSolverDatabase.Models;
 using SpeedSolverDatabase.Models.Configurations;
 
@@ -34,12 +35,14 @@ namespace SpeedSolverDatabase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Server=localhost;Username=postgres;Password=123;Database=speedsolver");
+            optionsBuilder.UseNpgsql("Server=localhost;Username=postgres;Password=123;Database=speedsolver")
+                .EnableSensitiveDataLogging();
             base.OnConfiguring(optionsBuilder);
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new ProjectModeratorConfiguration());
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());

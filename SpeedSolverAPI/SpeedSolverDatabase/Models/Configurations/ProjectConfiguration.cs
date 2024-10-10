@@ -10,6 +10,11 @@ public class ProjectConfiguration: IEntityTypeConfiguration<Project>
         builder.ToTable("projects");
 
         builder.HasKey(p => p.ProjectId);
-        builder.Property(p => p.ProjectTitle).IsRequired();
+        builder.Property(p => p.ProjectTitle)
+            .IsRequired()
+            .HasMaxLength(50);
+        
+        builder.Property(p => p.ProjectDescription)
+            .HasMaxLength(300);
     }
 }

@@ -13,4 +13,5 @@ public class User
     public string? PhoneNumber { get; set; }
     
     public virtual List<Team>? Teams { get; set; }
+    public virtual List<ProjectModerator>? ProjectModerated { get; set; }
 }
